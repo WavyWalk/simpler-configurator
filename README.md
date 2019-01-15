@@ -2,14 +2,14 @@
 Simple configuration lib for Kotlin. That allows your POJOS to consume configuration files.
 # Dependencies
 It is coded against interface. For now the Yaml adapter is provided.
-#How
+# How
 Define a POJO that acts as config object or use existing. Annotatate properties that needed to be configured with configuration file with `@ConfigurationProperty`
 
 call it with adaptered consumer, provided with file path.
 
 properties are typed as you've defined them.
 
-#How exactly?
+# Show me the code!
 ```kotlin
 class DatabaseConfiguration {
 
