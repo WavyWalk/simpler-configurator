@@ -63,3 +63,16 @@ db.config.username!! // postgres
 properties should be provided as nullable vars. Well it could be implemented through delegates/lazy.
 but ther'd be problems with primitive types or it'd require casting at runtime etc.
 nobody's got time for dat
+
+# installation
+It's not on repo engines. Clone to your app's PARENT folder.
+in `settings.graddle`:
+```groovy
+include ':simpler-configurator'  
+project(':simpler').projectDir = new File(settingsDir, "../simpler-configurator")
+```
+in `build.graddle`:
+```groovy
+compile project(':simpler-configurator')
+```
+
