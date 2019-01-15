@@ -37,6 +37,7 @@ development:
   password: postgres
   jdbcUrl: jdbc:postgresql://localhost/test_app
   driverClassName: org.postgresql.Driver
+  port: 0
 
 production:
   auth_server:
@@ -44,7 +45,7 @@ production:
     password: postgres
     jdbcUrl: jdbc:postgresql://localhost/test_app
     driverClassName: org.postgresql.Driver
-    
+    port: 0
   
   
 ```
