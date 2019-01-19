@@ -1,4 +1,4 @@
-package at.wavywalk.simplerconfigurator.anotations
+package wavywalk.simpler.configurator.anotations
 
 @Target(AnnotationTarget.PROPERTY)
 annotation class ConfigurationProperty(

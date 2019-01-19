@@ -1,4 +1,4 @@
-package at.wavywalk.simplerconfigurator
+package wavywalk.simpler.configurator
 
 interface ISimplerConfigurationConsumer {
 

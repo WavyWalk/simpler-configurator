@@ -1,6 +1,6 @@
-package at.wavywalk.simplerconfigurator
+package wavywalk.simpler.configurator
 
-import at.wavywalk.simplerconfigurator.anotations.ConfigurationProperty
+import wavywalk.simpler.configurator.anotations.ConfigurationProperty
 import org.yaml.snakeyaml.Yaml
 import java.io.FileInputStream
 import java.io.InputStream
@@ -20,11 +20,17 @@ object YamlConfigurationConsumer : ISimplerConfigurationConsumer {
             keyPathToConfigurationPropertiesInFile = keyPathToConfigurationPropertiesInFile,
             configurationObject = objectToConfigure
         )
-        ensureThatConfigurationFileExists(configurationObjectWrapper)
-        val propertiesMap = constructPropertiesMapFromConfigurationFileEnsuringThatConfigurationExistsForKeysPath(
+        ensureThatConfigurationFileExists(
             configurationObjectWrapper
         )
-        populateConfigurationObject(configurationObjectWrapper, propertiesMap)
+        val propertiesMap =
+            constructPropertiesMapFromConfigurationFileEnsuringThatConfigurationExistsForKeysPath(
+                configurationObjectWrapper
+            )
+        populateConfigurationObject(
+            configurationObjectWrapper,
+            propertiesMap
+        )
     }
 
     private fun ensureThatConfigurationFileExists(configurationObjectWrapper: SimplerConfigurationObjectWrapper) {
@@ -88,9 +94,15 @@ object YamlConfigurationConsumer : ISimplerConfigurationConsumer {
                             propertiesMap: MutableMap<String, Any?>,
                             configurationPropertyAnnotation: ConfigurationProperty
     ) {
-        validateConfigurationPropertyWhenSetting(configurationObjectWrapper, configurationProperty,
+        validateConfigurationPropertyWhenSetting(
+            configurationObjectWrapper, configurationProperty,
             propertiesMap, configurationPropertyAnnotation
         )
+        println("==========================================")
+        println(configurationProperty.name)
+        println(propertiesMap)
+        println(propertiesMap[configurationProperty.name])
+
         configurationProperty.setter.call(configurationObjectWrapper.configurationObject, propertiesMap[configurationProperty.name])
     }
 
@@ -100,7 +112,8 @@ object YamlConfigurationConsumer : ISimplerConfigurationConsumer {
         configurationObjectWrapper.configurationObject::class.declaredMemberProperties.forEach {
             val configurationPropertyAnnotation = it.findAnnotation<ConfigurationProperty>()
             if (configurationPropertyAnnotation != null) {
-                setProperty(configurationObjectWrapper, it as KMutableProperty<*>,
+                setProperty(
+                    configurationObjectWrapper, it as KMutableProperty<*>,
                     propertiesMap, configurationPropertyAnnotation
                 )
             }
@@ -112,7 +125,8 @@ object YamlConfigurationConsumer : ISimplerConfigurationConsumer {
                                                          propertiesMap: MutableMap<String, Any?>,
                                                          configurationPropertyAnnotation: ConfigurationProperty
     ) {
-        ConfigurationPropertyAgainstPropertyInConfigValidator(configurationObjectWrapper, configurationProperty,
+        ConfigurationPropertyAgainstPropertyInConfigValidator(
+            configurationObjectWrapper, configurationProperty,
             propertiesMap, configurationPropertyAnnotation
         ).validate()
     }

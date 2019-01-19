@@ -1,7 +1,7 @@
-package at.wavywalk.simplerconfigurator
+package wavywalk.simpler.configurator
 
-import at.wavywalk.simplerconfigurator.anotations.ConfigurationProperty
-import at.wavywalk.simplerconfigurator.exceptions.ConfigurationPropertyException
+import wavywalk.simpler.configurator.anotations.ConfigurationProperty
+import wavywalk.simpler.configurator.exceptions.ConfigurationPropertyException
 import kotlin.reflect.KMutableProperty
 
 class ConfigurationPropertyAgainstPropertyInConfigValidator(
@@ -22,8 +22,8 @@ class ConfigurationPropertyAgainstPropertyInConfigValidator(
             && !configurationAnnotaion.allowNull
         ) {
             throw ConfigurationPropertyException(
-                    "${configurationProperty.name} of configuration consumer class ${configurationObjectWrapper.configurationObject::class.qualifiedName}" +
-                    "is not nullable and such configuration key is not provided in configuration file under ${configurationObjectWrapper.pathToConfigurationFile}"
+                "${configurationProperty.name} of configuration consumer class ${configurationObjectWrapper.configurationObject::class.qualifiedName}" +
+                        "is not nullable and such configuration key is not provided in configuration file under ${configurationObjectWrapper.pathToConfigurationFile}"
             )
         }
         if (
@@ -32,7 +32,7 @@ class ConfigurationPropertyAgainstPropertyInConfigValidator(
         ) {
             throw ConfigurationPropertyException(
                 "${configurationProperty.name} of configuration consumer class ${configurationObjectWrapper.configurationObject::class.qualifiedName}" +
-                "is not nullable and value of property in configuration file under ${configurationObjectWrapper.pathToConfigurationFile} is null"
+                        "is not nullable and value of property in configuration file under ${configurationObjectWrapper.pathToConfigurationFile} is null"
             )
         }
         ensureTypeCompatibility()
@@ -52,8 +52,8 @@ class ConfigurationPropertyAgainstPropertyInConfigValidator(
         if (configurationPropertyReturnedTypeName != typeOfProvidedPropertyInConfigurationFile) {
             throw ConfigurationPropertyException(
                 "${configurationProperty.name} of configuration consumer class ${configurationObjectWrapper.configurationObject::class.qualifiedName}" +
-                "has type of: ${configurationPropertyReturnedTypeName}," +
-                "while property in configuration file under ${configurationObjectWrapper.pathToConfigurationFile} has type of ${typeOfProvidedPropertyInConfigurationFile}"
+                        "has type of: ${configurationPropertyReturnedTypeName}," +
+                        "while property in configuration file under ${configurationObjectWrapper.pathToConfigurationFile} has type of ${typeOfProvidedPropertyInConfigurationFile}"
             )
         }
     }
