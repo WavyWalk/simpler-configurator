@@ -1,7 +1,7 @@
-package wavywalk.simpler.configurator
+package at.wavywalk.simpler.configurator
 
-import wavywalk.simpler.configurator.anotations.ConfigurationProperty
-import wavywalk.simpler.configurator.exceptions.ConfigurationPropertyException
+import at.wavywalk.simpler.configurator.anotations.ConfigurationProperty
+import at.wavywalk.simpler.configurator.exceptions.ConfigurationPropertyException
 import kotlin.reflect.KMutableProperty
 
 class ConfigurationPropertyAgainstPropertyInConfigValidator(

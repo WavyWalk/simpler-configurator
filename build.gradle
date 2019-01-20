@@ -15,13 +15,27 @@ plugins {
 apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
 
 group 'wavywalk.simpler.configurator'
-version '1.0-SNAPSHOT'
+version '0.1.0'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
+
+task sourcesJar(type: Jar, dependsOn: project.classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: project.javadoc) {
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar, javadocJar
+}
+
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
@@ -32,11 +46,12 @@ dependencies {
 
 publish {
     userOrg = 'wavywalk'
-    groupId = 'wavywalk'
-    repoName = 'simpler'
+    groupId = 'at.wavywalk.simpler'
+    repoName = 'maven'
     artifactId = 'simpler-configurator'
     publishVersion = '0.1.0'
     desc = 'a configuration lib'
+    repository = "https://github.com/WavyWalk/simpler-configurator"
 }
 
 

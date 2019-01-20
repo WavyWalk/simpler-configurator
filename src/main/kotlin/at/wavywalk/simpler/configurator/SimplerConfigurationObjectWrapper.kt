@@ -1,4 +1,4 @@
-package wavywalk.simpler.configurator
+package at.wavywalk.simpler.configurator
 
 class SimplerConfigurationObjectWrapper(
     val pathToConfigurationFile: String,

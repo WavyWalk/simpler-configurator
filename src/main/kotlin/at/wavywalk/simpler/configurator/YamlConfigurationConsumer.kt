@@ -1,6 +1,6 @@
-package wavywalk.simpler.configurator
+package at.wavywalk.simpler.configurator
 
-import wavywalk.simpler.configurator.anotations.ConfigurationProperty
+import at.wavywalk.simpler.configurator.anotations.ConfigurationProperty
 import org.yaml.snakeyaml.Yaml
 import java.io.FileInputStream
 import java.io.InputStream
